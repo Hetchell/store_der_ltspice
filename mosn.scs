@@ -1,3 +1,4 @@
+simulator lang=spectre insensitive=yes
 * EE5507 library
 * modified for use with LTSpice; DM 8/19/2008
 *
@@ -8,15 +9,14 @@
 
 *as=(1.1u*W) ps=(2.2u+W) ad=(1.1u*W) pd=(2.2u+W)
 *-----------------------------------------------------------------------
-subckt NM (D G S B) 
-parameters W=10u L=1u
-M1 (D G S B) NMOS l=L w=W 
-ends NM
-
+inline subckt NM (d g s b) 
+parameters w=1e-7 l=1e-6 
++as=(1.1u*W) ps=(2.2u+W) ad=(1.1u*W) pd=(2.2u+W)
 * ----------------------------------------------------------------------
 * NMOS transistor model 
 * ----------------------------------------------------------------------
-model NMOS bsim3v3 type=n
+model NMOS bsim3v3 
++type=n
 * ----------------------------------------------------------------------
 ************************* SIMULATION PARAMETERS ************************
 * ----------------------------------------------------------------------
@@ -128,3 +128,5 @@ model NMOS bsim3v3 type=n
 +pvsat   = 1.707461E3     
 +peta0   = 1E-4           
 +pketa   = 2.348777E-3
+NM (d g s b) NMOS
+ends
